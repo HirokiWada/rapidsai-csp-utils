@@ -27,7 +27,6 @@ for line in io.TextIOWrapper(output.stdout, encoding="utf-8"):
     print(line.rstrip())
 
 # Install RAPIDS
-pkg = "cudf"
 if(sys.argv[1] == "nightly"):
   release =  ["rapidsai-nightly", "22.02"]
   print("Installing RAPIDS Nightly "+release[1])
@@ -35,7 +34,7 @@ else:
   release = ["rapidsai", "21.12"]
   print("Installing RAPIDS Stable "+release[1])
 
-pkg = "rapids"
+pkg = "cudf"
 print("Starting the RAPIDS install on Colab.  This will take about 15 minutes.")
 
 output = subprocess.Popen(["conda install -y --prefix /usr/local -c "+release[0]+" -c nvidia -c conda-forge python=3.7 cudatoolkit=11.2 "+pkg+"="+release[1]], shell=True, stderr=subprocess.STDOUT, stdout=subprocess.PIPE)
